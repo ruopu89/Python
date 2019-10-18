@@ -136,3 +136,16 @@ print(lis)
 # 10.3 方法2：
 lis[0][1][2]['k1'][1] = '100'
 print(lis)
+
+# 20191015
+# 字典是可变的，无序的，key不重复。item指kv对。字典是唯一的内置映射类型
+
+phonebook = {'Alie':123,'Beth':'1238','Cecil':10923}
+print(phonebook['Cecil'])
+
+del(dict)
+# 如果不加入此行，下面执行时会报TypeError: 'dict' object is not callable。网上有人说原因是dict()是python的一个内建函数，
+# 如果将dict自定义为一个python字典，在之后想调用dict()函数是会报出“TypeError: 'dict' object is not callable”的错误
+# 在jupeter中执行下面的代码并没有问题，在这里单独执行下面代码也没有问题。应该是上面定义过dict，所以这里再次定义会报错
+d = dict(enumerate(list(range(5))))
+print(d)
