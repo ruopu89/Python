@@ -266,7 +266,7 @@ print(numbers)
 [1, 5]
 
 # *列表方法
-    # append
+    # append(object) -> None；列表尾部追加元素，返回None；返回None就意味着没有新的列表产生，就地修改；时间复杂度是O(1)
 lst = [1, 2, 3]
 lst.append(4)
 print(lst)
@@ -369,5 +369,255 @@ print(x.count([1, 2]))
 1
 
     # extend
-    # extend(iteratable) -> None；将可迭代对象的元素追加进来，返回None；就地修改
+    # extend(iteratable) -> None；将可迭代对象的元素追加进来，返回None；就地修改，extend与其他拼接方法的不同就是就地修改，其他方法是返回一个新的列表。
+a = [1,2,3]
+b = [4,5,6]
+a.extend(b)
+print(a)
+# 输出：
+[1, 2, 3, 4, 5, 6]
 
+    # index
+    # index(value,[start,[stop]]);通过值value，从指定区间查找列表内的元素是否匹配;匹配第一个就立即返回索引;匹配不到，抛出异常ValueError
+knights = ['We', 'are', 'the', 'knights', 'who', 'say', 'ni']
+print(knights.index('who'))
+print(knights.index('herring'))
+print(knights[4])
+# 输出：
+4
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-9-da6a439e3aff> in <module>
+      1 knights = ['We', 'are', 'the', 'knights', 'who', 'say', 'ni']
+      2 print(knights.index('who'))
+----> 3 print(knights.index('herring'))
+      4 print(knights[4])
+
+ValueError: 'herring' is not in list
+
+'who'
+
+    # insert(index,object) -> None；在指定的索引index处插入元素object
+    # 返回None就意味着没有新的列表产生，就地修改；时间复杂度是O(n)；索引超越上界，尾部追加；索引超越下界，头部追加
+numbers = [1,2,3,5,6,7]
+numbers.insert(3,'four')
+print(numbers)
+numbers = [1,2,3,5,6,7]
+numbers[3:3] = ['foru']
+print(numbers)
+# 输出：
+[1, 2, 3, 'four', 5, 6, 7]
+[1, 2, 3, 'foru', 5, 6, 7]
+
+
+    # pop([index]) -> item
+    # 不指定索引index，就从列表尾部弹出一个元素
+    # 指定索引index，就从索引处弹出一个元素，索引超界抛出IndexError错误
+x = [1,2,3]
+print(x.pop())
+print(x)
+print(x.pop(0))
+print(x)
+x = [1,2,3]
+print(x.append(x.pop()))
+print(x)
+x.append(x.pop(0))
+print(x)
+x.append(x.pop(0))
+print(x)
+# 使用append代替push方法，因为python中没有提供push。此将刚弹出的值压入(或附加)后，得到的栈将与原来相同。要创建先进先出(FIFO)的队列，可使用insert(0, ...)代替append。另外，也可继续使用append，但用 pop(0)替代 pop() 。
+# 输出：
+3
+[1, 2]
+1
+[2]
+None
+[1, 2, 3]
+[2, 3, 1]
+[3, 1, 2]
+
+    # remove(value) -> None；从左至右查找第一个匹配value的值，移除该元素，返回None；就地修改
+x = ['to', 'be', 'or', 'not', 'to', 'be']
+x.remove('be')
+print(x)
+x.remove('bee')
+# 输入
+['to', 'or', 'not', 'to', 'be']
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-30-4e925bfb4b14> in <module>
+      2 x.remove('be')
+      3 print(x)
+----> 4 x.remove('bee')
+
+ValueError: list.remove(x): x not in list
+
+    # reverse() -> None；将列表元素反转，返回None；就地修改
+x = [1,2,3]
+x.reverse()
+print(x)
+x = [1,2,3]
+print(list(reversed(x)))
+# reverse按相反的顺序排列列表中的元素。但不返回任何值(与remove和sort等方法一样) 。如果要按相反的顺序迭代序列，可使用函数reversed 。这个函数不返回列表，而是返回一个迭代器 。你可使用list将返回的对象转换为列表。
+# 输出：
+[3, 2, 1]
+[3, 2, 1]
+
+    # sort(key=None,reverse=False) -> None；对列表元素进行排序，就地修改，默认升序；reverse为True，反转，降序；key一个函数，指定key如何排序； lst.sort(key=functionname)
+x = [4, 6, 2, 1, 7, 9]
+x.sort()
+print(x)
+x = [4, 6, 2, 1, 7, 9]
+y = x.sort()
+print(y)
+x = [4, 6, 2, 1, 7, 9]
+y = x.copy()
+y.sort()
+print(x)
+print(y)
+x = [4, 6, 2, 1, 7, 9]
+y = sorted(x)
+print(x)
+print(y)
+sorted('Python')
+# 输出：
+[1, 2, 4, 6, 7, 9]
+None
+[4, 6, 2, 1, 7, 9]
+[1, 2, 4, 6, 7, 9]
+[4, 6, 2, 1, 7, 9]
+[1, 2, 4, 6, 7, 9]
+['P', 'h', 'n', 'o', 't', 'y']
+
+x = ['aardvark', 'abalone', 'acme', 'add', 'aerate']
+x.sort(key=len)
+print(x)
+# 方法sort接受两个可选参数：key 和reverse。这两个参数通常是按名称指定的，称为关键字参数，参数 key类似于参数cmp：你将其设置为一个用于排序的函数。然而，不会直接使用这个函数来判断一个元素是否比另一个元素小，而是使用它来为每个元素创建一个键，再根据这些键对元素进行排序。因此，要根据长度对元素进行排序，可将参数 key 设置为函数len。
+x = [4, 6, 2, 1, 7, 9]
+x.sort(reverse=True)
+print(x)
+# 对于另一个关键字参数reverse，只需将其指定为一个真值（True或False），以指出是否要按相反的顺序对列表进行排序。
+# 函数sorted也接受参数key和reverse。在很多情况下，将参数key设置为一个自定义函数很有用。
+
+pop index count copy # 这四个方法不会就地修改并返回None
+append clear extend insert remove reverse sort # 这些方法会就地修改并返回None
+
+# 练习
+===============================================
+   示例，最笨拙的方法。从小到大排列，i1最小，i3最大
+===============================================
+nums = []
+# 需要先定义出nums这个变量，不然会提示"nums not deni"
+for i in range(3):
+    nums.append(int(input('{}:'.format(i))))
+# '{}:'是取其后面format()中变量的值，这时format中是i，'{}:'是显示的提示信息，
+# 输入的值会被int处理后追加到nums列表中。结果如下：
+# 0:1   第0次，输入的是1
+# 0   这里打印了一次i
+# [1]   这里打印一次nums
+# 1:3   第1次输入的是3
+# 1
+# [1, 3]   nums现在就是两个数字了
+# 2:4
+# 2
+# [1, 3, 4]
+if nums[0] > nums[1]:
+    if nums[0] > nums[2]:
+        i3 = nums[0]   # 上面先比较索引0是否大于索引1和2，如果大于，就把索引0的数字给i3。
+        if nums[1] > nums[2]:
+            i2 = nums[1]
+            i1 = nums[2]    
+# 继续判断，这时已判断完索引0了，再判断索引1是否大于索引2，如果大于，就把索引1给i2，索引2给i1。否则，就把
+# 索引2给i2，索引1给i1。
+        else:
+            i2 = nums[2]
+            i1 = nums[1]
+    else:
+        i2 = nums[0]
+        i3 = nums[2]
+        i1 = nums[1]
+# 如果上面判断索引0不大于索引2，就表示索引2最大，给i3，索引1最小，给i1。
+else:  # 0<1
+    if nums[0] > nums[2]:
+        i3 = nums[1]
+        i2 = nums[0]
+        i1 = nums[2]
+# 如果最开始判断的索引0小于索引1，再判断索引 0是否大于索引2，如果大于，就表示索引2最小，索引1最大。
+# 下面的判断道理是一样的
+    else: # 0<2
+        if nums[1] < nums[2]: # 1<2
+            i1 = nums[0]
+            i2 = nums[1]
+            i3 = nums[2]
+        else: # 1 > 2
+            i1 = nums[0]
+            i2 = nums[2]
+            i3 = nums[1]
+print(i1,i2,i3)
+# 这里主要看六种变化，1. 索引0大于索引1和索引2，索引1大于索引2；2. 索引0大于索引1和索引2，索引2大于索引1；
+# 3. 索引2大于索引0和索引1，索引0大于索引1；4. 索引2大于索引0和索引1，索引1大于索引0；5. 索引1大于索引0和索引2，索引0大于索引2；6. 索引1大于索引0和索引2，索引2大于索引0
+
+===================
+   改进，从大到小排列
+===================
+nums = []
+out = None   # 定义空列表，将None改为[]也可以。
+for i in range(3):
+    nums.append(int(input('{}:'.format(i))))
+    
+if nums[0] > nums[1]:
+    if nums[0] > nums[2]:
+        if nums[1] > nums[2]:
+            out = [2,1,0]   # 这里的[2,1,0]指的是索引，保存在out变量中
+# out是为了保存索引的顺序
+        else:
+            out = [1,2,0]
+    else:
+        out = [1,0,2]
+else: # 0<1
+    if nums[0] > nums[2]:
+        out = [2,0,1]
+    else:  # 0<2
+        if nums[1] < nums[2]:   # 1<2
+            out = [0,1,2]
+        else: # 1>2
+            out = [0,2,1]
+out.reverse()
+# reverse()是为了将out列表中的元素整个反过来，原本是从小到大排列，变成从大到小排列。
+for i in out:
+    print(nums[i],end=', ')
+# 最后将out中的三个数字依次传给i，i中保存的实际就是索引编号，再把i带入到nums列表，
+# 这样就从小到大打印出结果了
+
+================
+  max min的实现
+================
+nums = []
+out = None
+for i in range(3):
+    nums.append(int(input('{}:'.format(i))))
+    
+while True:
+    cur = min(nums)
+# 死循环，用min把列表中最小的数字选出
+    print(cur)
+# 打印最小的数字
+    nums.remove(cur)
+# 将最小的数字删除，因为上面for循环定义了循环3次，所以这里while循环可以循环两次，最后一次用下面的代码执行
+    if len(nums) == 1:
+# 判断nums列表中是否只有1个元素，如果不是，就继续上面的循环
+        print(nums[0])
+        break
+# 打印出最后一个元素后就退出循环
+
+==============
+  列表sort实现
+==============
+nums = []
+
+for i in range(3):
+    nums.append(int(input('{}:'.format(i))))
+    
+nums.sort()
+# sort() 函数用于对原列表进行排序
+print(nums)
