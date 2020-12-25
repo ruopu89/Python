@@ -201,35 +201,158 @@
 # a.print()
 # =========================================================================
 # Mixin
-class PrintableMixin:
-    def print(self):
-        print('~~~~~~~~~~~~~~~~~~~~~~~~')
-        print('{}'.format(self.content))
+# class PrintableMixin:
+#     def print(self):
+#         print('~~~~~~~~~~~~~~~~~~~~~~~~')
+#         print('{}'.format(self.content))
+#
+# class Document:
+#     def __init__(self,content):
+#         self.content = content
+#
+#     def print(self):
+#         print(123, self.content)
+#
+# def printable(cls):
+#     def _print(self):
+#         print('~~~~~~~~~~~~~~~~~~~~~~~')
+#         print('{}'.format(self.content))
+#     cls.print = _print
+#     return cls
+#
+# class Word(Document): pass
+#
+# @printable
+# class PrintableWord(Word): pass
+#
+# class Pdf(Document): pass
+#
+# class PrintablePdf(PrintableMixin,Pdf): pass
+#
+# # print(PrintablePdf.mro())
+# word = PrintablePdf('test\nabc')
+# # print(word.__dict__)
+# word.print()
+# ==========================================
+# 在需要打印功能的子类上增加，与下面的mixin有什么区别？？？不懂
+# class Document:
+#     def __init__(self, content):
+#         self.content = content
+#
+# class Word(Document): pass
+# class Pdf(Document): pass
+#
+# class Printable:
+#     def testprint(self):
+#         print(self.content)
+#
+# class PrintableWord(Printable, Word): pass
+#
+# print(1, PrintableWord.__dict__)
+# print(2, PrintableWord.mro())
+#
+# pw = PrintableWord('test string')
+# # pw.testprint()
+# print(pw.__dict__)
+# ======================================================
+# mixin方法
+# class Document:
+#     def __init__(self, content):
+#         self.content = content
+#
+# class Word(Document): pass
+# class Pdf(Document): pass
+#
+# class PrintableMixin:
+#     def printtest(self):
+#         print(self.content, 'Mixin')
+#
+# class PrintableWord(PrintableMixin, Word): pass
+#
+# print(3, PrintableWord.__dict__)
+# print(4, PrintableWord.mro())
+#
+# def printable(cls):
+#     def _print(self):
+#         print(self.content, '装饰器')
+#     cls.print = _print
+#     return cls
+#
+# @printable
+# class PrintablePdf(Word): pass
+# print(PrintablePdf.__dict__)
+# print(PrintablePdf.mro())
+#============================================================
+# import math
+# import json
+# import msgpack
+#
+# class Shape:
+#     @property
+#     def area(self):
+#         raise NotImplementedError('基类未实现')
+#
+# class Circle(Shape):
+#     def __init__(self, radius):  # 半径
+#         self.d = radius*2
+#
+#     @property
+#     def area(self):
+#         return math.pi*self.d*self.d*0.25  # 因为self.d是直径，所以两个直径相乘后要再乘以0.25
+#
+# shapes = Circle(4)
+# print(shapes.area)
+#
+# # class SerializableMixin:
+# #     def dumps(self, t='json'):
+# #         if t == 'json':
+# #             return json.dumps(self.__dict__)
+# #         elif t == 'msgpack':
+# #             return msgpack.packb(self.__dict__)
+# #         else:
+# #             raise NotImplementedError('没有实现的序列化')
+# #
+# # class SerializableCircleMixin(SerializableMixin, Circle): pass
+#
+# scm = SerializableCircleMixin(4)
+# print(scm.area)
+# s = scm.dumps('msgpack')
+# print(s)
+# s = scm.dumps('json')
+# print(s)
+# =====================================================================
+import math
+import json
+import msgpack
 
-class Document:
-    def __init__(self,content):
-        self.content = content
-
-    def print(self):
-        print(123, self.content)
-
-def printable(cls):
-    def _print(self):
-        print('~~~~~~~~~~~~~~~~~~~~~~~')
-        print('{}'.format(self.content))
-    cls.print = _print
+def Serializable(cls):
+    def warrep(self):
+        if self.t == 'json':
+            return json.dumps(self.__dict__)
+        elif self.t == 'msgpack':
+            return msgpack.packb(self.__dict__)
+        else:
+            raise NotImplementedError('没有实现的序列化')
+    cls.xulie = warrep
     return cls
 
-class Word(Document): pass
+class Shape:
+    @property
+    def area(self):
+        raise NotImplementedError('基类未实现')
 
-@printable
-class PrintableWord(Word): pass
+@Serializable  # Circle = Serializable(Circle)
+class Circle(Shape):
+    def __init__(self, radius, t='json'):  # 半径
+        self.d = radius*2
+        self.t = t
 
-class Pdf(Document): pass
+    @property
+    def area(self):
+        return math.pi*self.d*self.d*0.25  # 因为self.d是直径，所以两个直径相乘后要再乘以0.25
 
-class PrintablePdf(PrintableMixin,Pdf): pass
-
-# print(PrintablePdf.mro())
-word = PrintablePdf('test\nabc')
-# print(word.__dict__)
-word.print()
+scm = Circle(4,'msgpack')
+print(scm.area)
+print(scm.xulie())
+print(scm.__dict__)
+print(Circle.__dict__)
