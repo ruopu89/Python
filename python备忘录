@@ -1,0 +1,20 @@
+20191016
+- 编译器是把源程序的每一条语句都编译成机器语言，并保存成二进制文件，这样运行时计算机可以直接以机器语言来运行此程序，速度很快；它把源代码转换成目标机器的CPU指令
+- 解释器是只在执行程序时，才一条一条的解释成机器语言给计算机来执行，所以运行速度是不如编译后的程序运行的快的。解释后转换成字节码，运行在虚拟机上，解释器执行中间代码。计算机不能直接认识并执行我们写的语句，它只能认识机器语言（二进制的形式）
+- 编译器有预编译的过程对代码优化，执行效率高。但如果修改就要重新编译。解释型有良好的平台兼容性，只要有解释器（虚拟机），修改代码后就可以直接运行。但性能上不如编译型语言
+- 低级语言是面向机器的语言，包括机器语言、汇编语言。不同机器不能通用
+- 高级语言是接近自然的语言和数学语言的计算机语言。语言越高级，越接近人类的自然语言和数学语言。语言越低级，越能让机器理解。高级语言和低级语言之间需要一个转换的工具，就是编译器或解释器。
+- 动态类型语言：动态类型语言是指在运行期间才去做数据类型检查的语言，也就是说，在用动态类型的语言编程时，永远也不用给任何变量指定数据类型，该语言会在你第一次赋值给变量时，在内部将数据类型记录下来。Python和Ruby就是一种典型的动态类型语言，其他的各种脚本语言如VBScript也多少属于动态类型语言。
+- 静态类型语言：静态类型语言与动态类型语言刚好相反，它的数据类型是在编译其间检查的，也就是说在写程序时要声明所有变量的数据类型，C/C++是静态类型语言的典型代表，其他的静态类型语言还有C#、JAVA等。
+- 强类型语言：不同类型之间操作，必须先强制类型转换为同一类型。print('a'+1)
+- 弱类型语言：不同类型间可以操作，自动隐式转换，JavaScript中console.log(1+'a')
+
+20191018
+- 开发环境使用pyenv，可以管理python解释器、python版本、python的虚拟环境。可以使多版本共存。pyenv是一个虚拟环境。也有其他的环境可以实现。pyenv是Python版本管理工具。 pyenv可以改变全局的Python版本，安装多个版本的Python，设置目录级别的Python版本，还能创建和管理 virtual python environments 。所有的设置都是用户级别的操作，不需要sudo命令。pyenv主要用来管理Python的版本，比如一个项目需要Python 2.x ，一个项目需要 Python 3.x 。 而virtualenv主要用来管理Python包的依赖，不同项目需要依赖的包版本不同，则需要使用虚拟环境。pyenv通过系统修改环境变量来实现 Python 不同版本的切换。而 virtualenv 通过将 Python 包安装到一个目录来作为 Python 包虚拟环境，通过切换目录来实现不同包环境间的切换。pyenv 的美好之处在于，它并没有使用将不同的PATH植入不同的shell这种高耦合的工作方式，而是简单地在PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可执行文件的查找都会首先被这个 shims 路径截获，从而使后方的系统路径失效。
+- python环境：使用pyenv管理，包换global、local、shell三种环境。另外还有一个virtualenv的虚拟环境。global可以改变全局的python版本。shell只设定当前的会话级别，如果会话变了，版本的调整也就失效了。local会改变某个目录的python版本，进入目录就到了一个新的版本，并且在此目录下创建的目录也会继承使用这个python版本
+- 安装pyenv的要求，git gcc make patch gdbm-devel openssl-devel sqlite-devel readline-devel zlib-devel bzip2-devel
+- 在家目录中的.pyenv目录中创建cache目录，并到https://www.python.org/ftp/python/下载相应版本的.tar.xz和.tgz包。如python-3.5.3.tar.xz、python-3.5.3.tgz。之后再使用pyenv install 3.5.3 -v安装python3.5.3版本时就不需要下载了，并会加快安装的时间，不然时间是非常慢的
+- 使用pyenv virtualenv 3.5.3 my353创建一个虚拟环境，再使用pyenv local my353可以将目录与此虚拟环境绑定。创建虚拟环境后，在/home/shouyu/.pyenv/versions目录中会多一个软连接，另外这个目录下也会有安装的python版本，也就是pyenv管理的Python版本，软链接实际上链接的是安装的python版本中的envs目录中创建的这个虚拟环境目录。在～/.pyenv目录中有pyenv管理的python版本目录，在python版本目录中有python*.*目录，在这个目录下有site-packages目录，这个目录有开发中安装的所有的包。另外，在这个python版本目录中有envs，在envs目录中有虚拟环境目录，在虚拟环境目录中有同样的lib目录和其下的python3.5目录，其中有一个site-packages，。如果大家都用虚拟环境的3.5.3版本，那么包会全部放到这个目录里
+- 在家目录创建.pip目录，在目录中创建pip.conf文件，使用阿里源，之后到虚拟环境中用pip来安装ipython
+- 使用虚拟环境后，在虚拟环境中安装的包，在虚拟环境目录外是不能用的
+- 在虚拟环境中使用pip命令安装jupyter后，在jupyter中创建的文件都会保存到虚拟目录中。启动前可以先设置密码，密码保存在/home/shouyu/.jupyter/jupyter_notebook_config.json中，之后设置监听地址，方法：jupyter-notebook password -> jupyter-notebook --ip=0.0.0.0 --no-browser
