@@ -49,8 +49,8 @@
 # print('ending')
 # print(threading.enumerate())
 
-import threading
-import time
+# import threading
+# import time
 
 # class a:
 #     def __init__(self, x):
@@ -71,11 +71,13 @@ import time
 import threading
 import time
 import logging
+from cyberbrain import trace
 FORMAT = "%(asctime)s %(thread)d %(message)s %(schoolname)s"  # 这里只能用C风格
 logging.basicConfig(level=logging.INFO, format=FORMAT, datefmt="%Y-%m-%d-%H:%M:%S")
 # 一般日志级别定到INFO，比这个级别低的就不打印了
 d = {"schoolname":'magedu.com'}
 
+@trace
 def add(x, y):
     log = logging.getLogger('a')
     # log = logging.getLogger('')
