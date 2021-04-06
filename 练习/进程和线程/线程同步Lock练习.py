@@ -300,4 +300,4 @@ def worker(task=100):
     logging.info("{}".format(len(cups)))
 
 for x in range(10):
-    threading.Thread(target=worker, args=(100,)).start()
+    threading.Thread(target=worker, args=(110,)).start()
