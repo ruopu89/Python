@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1aab9ae-d109-4c3f-a828-f53c543327be" name="Default Changelist" comment="20201218pycharmtest3">
-      <change beforePath="$PROJECT_DIR$/练习/面向对象/类的继承/课上笔记.py" beforeDir="false" afterPath="$PROJECT_DIR$/练习/面向对象/类的继承/课上笔记.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/练习/网络编程/http编程/webarch/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/练习/网络编程/http编程/webarch/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/练习/网络编程/http编程/template" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/练习/网络编程/http编程/拦截器、模板、JSON、打包.py" beforeDir="false" afterPath="$PROJECT_DIR$/练习/网络编程/http编程/拦截器、模板、JSON、打包.py" afterDir="false" />
     </list>
     <list id="1299b9b5-9fb3-4b11-afda-06785238daaa" name="20201218pycharmtest2" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -27,21 +34,23 @@
   <component name="ProjectId" id="1lY0qLTx7fV9RUyInlVJqQBHiIN" />
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
   </component>
-  <component name="RunManager" selected="Python.课上笔记">
+  <component name="RunManager" selected="Python.拦截器、模板、JSON、打包">
     <configuration name="课上笔记" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -55,6 +64,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/练习/面向对象/类的继承/课上笔记.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="拦截器、模板、JSON、打包" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/练习/网络编程/http编程" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/练习/网络编程/http编程/拦截器、模板、JSON、打包.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,6 +179,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.拦截器、模板、JSON、打包" />
         <item itemvalue="Python.课上笔记" />
         <item itemvalue="Python.冷门数据上传_20201030" />
         <item itemvalue="Python.属性装饰器property练习" />

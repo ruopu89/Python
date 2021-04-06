@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Magedu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 </head>
 <body>
-$END$
+显示数据<br>
+<ul>
+    {% for id,name,age in userlist %}
+    <li>{{loop.index}} {{id}}, {{name}}, {{age}}</li>
+    {% endfor %}
+</ul>
+总共{{usercount}}人
 </body>
 </html>
